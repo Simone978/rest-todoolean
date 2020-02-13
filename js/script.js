@@ -6,6 +6,11 @@ $(document).ready(function(){
     aggiungi(aggiunta);
   });
 
+  $(document).on("click",".delete",function(){
+    var element = $(this);
+    cancella(element);
+  });
+
 });
 
 function crea(){
@@ -46,6 +51,25 @@ function aggiungi(stringa){
         $('ol.list').html("");
         crea();
           console.log('aggiunta');
+        },
+      error: function (richiesta, stato, errori) {
+        alert("E' avvenuto un errore. " + errori);
+        }
+      }
+    );
+}
+
+function cancella(element){
+  var idRiga = element.parent().attr("data-key");
+  console.log("http://157.230.17.132:3019/todos/"+idRiga);
+  $.ajax(
+      {
+      url: "http://157.230.17.132:3019/todos/"+idRiga,
+      method: "DELETE",
+      success: function (success) {
+        console.log('cancellata');
+        $('ol.list').html("");
+        crea();
         },
       error: function (richiesta, stato, errori) {
         alert("E' avvenuto un errore. " + errori);
