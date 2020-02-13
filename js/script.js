@@ -39,7 +39,6 @@ function crea(){
 }
 
 function aggiungi(stringa){
-  console.log(stringa);
   $.ajax(
       {
       url: "http://157.230.17.132:3019/todos",
